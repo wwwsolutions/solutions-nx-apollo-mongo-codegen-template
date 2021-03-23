@@ -1,14 +1,9 @@
+import { Environment } from './environment.interface';
+
 const defaultPort = 4000;
 
-interface Environment {
-  apollo: {
-    introspection: boolean;
-    playground: boolean;
-  };
-  port: number | string;
-}
-
 export const environment: Environment = {
+  production: process.env.NODE_ENV === 'false',
   apollo: {
     introspection: process.env.APOLLO_INTROSPECTION === 'true',
     playground: process.env.APOLLO_PLAYGROUND === 'true',
