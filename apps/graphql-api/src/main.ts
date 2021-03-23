@@ -11,7 +11,11 @@ const server = new ApolloServer({
   resolvers,
   typeDefs,
   introspection: environment.apollo.introspection,
+  mocks: true, // TODO: Remove in PROD.
+  mockEntireSchema: false, // TODO: Remove in PROD.
   playground: environment.apollo.playground,
 });
 
-server.listen().then(({ url }) => console.log(`Server ready at ${url}. `));
+server
+  .listen(environment.port)
+  .then(({ url }) => console.log(`Server ready at ${url}. `));
