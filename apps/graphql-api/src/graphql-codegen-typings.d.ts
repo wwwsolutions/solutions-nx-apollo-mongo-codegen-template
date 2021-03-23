@@ -74,10 +74,17 @@ export type Query = {
   __typename?: 'Query';
   /** Get post by ID. */
   post?: Maybe<Post>;
+  /** Get user by ID. */
+  user?: Maybe<User>;
 };
 
 
 export type QueryPostArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryUserArgs = {
   id: Scalars['ID'];
 };
 
