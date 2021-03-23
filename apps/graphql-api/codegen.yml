@@ -1,0 +1,7 @@
+overwrite: true
+generates:
+  apps/graphql-api/src/graphql-codegen-typings.d.ts:
+    plugins:
+      - typescript
+    schema:
+      - apps/graphql-api/src/**/*.graphql

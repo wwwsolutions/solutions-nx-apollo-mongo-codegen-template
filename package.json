@@ -23,10 +23,17 @@
     "update": "nx migrate latest",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "workspace-generator": "nx workspace-generator"
+    "workspace-generator": "nx workspace-generator",
+    "graphql:codegen": "npx graphql-codegen --config apps/graphql-api/codegen.yml",
+    "prebuild": "npm run graphql:codegen",
+    "pretest": "npm run graphql:codegen"
   },
   "private": true,
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@graphql-codegen/typescript-resolvers": "^1.19.0",
     "@nrwl/cli": "11.5.1",
     "@nrwl/eslint-plugin-nx": "11.5.1",
     "@nrwl/express": "^11.5.2",
