@@ -1,20 +1,22 @@
 import { ApolloServer } from 'apollo-server';
 
 import resolvers from './resolvers';
-import typeDefs from './type-defs';
+import * as typeDefs from './type-defs.graphql';
 
 import { environment } from './environments/environment';
 
 console.log('environment = ', environment);
 
-const server = new ApolloServer({
+const serverConfig = {
   resolvers,
   typeDefs,
   introspection: environment.apollo.introspection,
   mocks: true, // TODO: Remove in PROD.
   mockEntireSchema: false, // TODO: Remove in PROD.
   playground: environment.apollo.playground,
-});
+};
+
+const server = new ApolloServer(serverConfig);
 
 server
   .listen(environment.port)

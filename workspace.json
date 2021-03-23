@@ -14,7 +14,8 @@
             "outputPath": "dist/apps/graphql-api",
             "main": "apps/graphql-api/src/main.ts",
             "tsConfig": "apps/graphql-api/tsconfig.app.json",
-            "assets": ["apps/graphql-api/src/assets"]
+            "assets": ["apps/graphql-api/src/assets"],
+            "webpackConfig": "apps/graphql-api/webpack.config.ts"
           },
           "configurations": {
             "production": {
