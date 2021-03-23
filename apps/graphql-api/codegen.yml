@@ -1,0 +1,11 @@
+overwrite: true
+schema: 'http://localhost:4001'
+generates:
+  apps/graphql-api/src/graphql-codegen-typings.d.ts:
+    plugins:
+      - typescript
+      - typescript-mongodb
+    config:
+      enumsAsTypes: true
+    schema:
+      - apps/graphql-api/src/**/*.graphql

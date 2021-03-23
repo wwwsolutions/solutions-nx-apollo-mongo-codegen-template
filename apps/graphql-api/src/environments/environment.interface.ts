@@ -4,5 +4,9 @@ export interface Environment {
     introspection: boolean;
     playground: boolean;
   };
+  mongoDb: {
+    databaseName: string;
+    url: string;
+  };
   port: number | string;
 }
