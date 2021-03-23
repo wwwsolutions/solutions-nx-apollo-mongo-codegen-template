@@ -7,6 +7,11 @@ import { environment } from './environments/environment';
 
 console.log('environment = ', environment);
 
-const server = new ApolloServer({ resolvers, typeDefs });
+const server = new ApolloServer({
+  resolvers,
+  typeDefs,
+  introspection: environment.apollo.introspection,
+  playground: environment.apollo.playground,
+});
 
 server.listen().then(({ url }) => console.log(`Server ready at ${url}. `));
