@@ -1,15 +1,8 @@
-import * as express from 'express';
-import { addTodoRoutes } from './app/app';
+import { ApolloServer } from 'apollo-server';
 
-const app = express();
+import resolvers from './resolvers';
+import typeDefs from './type-defs';
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api!' });
-});
-addTodoRoutes(app);
+const server = new ApolloServer({ resolvers, typeDefs });
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+server.listen().then(({ url }) => console.log(`Server ready at ${url}. `));
