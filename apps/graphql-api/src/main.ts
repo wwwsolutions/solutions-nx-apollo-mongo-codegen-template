@@ -1,3 +1,4 @@
+import { DIRECTIVES } from '@graphql-codegen/typescript-mongodb';
 import { ApolloServer } from 'apollo-server';
 import {
   DateTimeMock,
@@ -47,7 +48,7 @@ console.log('environment = ', environment);
   // CREATE AND CONFIGURE APOLLO SERVER (WITH MOCKS)
   const server = new ApolloServer({
     resolvers,
-    typeDefs,
+    typeDefs: [DIRECTIVES, typeDefs],
     introspection: environment.apollo.introspection,
     mockEntireSchema: false, // TODO: Remove in PROD.
     mocks: {

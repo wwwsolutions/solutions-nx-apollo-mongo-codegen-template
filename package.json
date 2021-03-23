@@ -60,6 +60,7 @@
     "webpack-graphql-loader": "^0.1.2"
   },
   "dependencies": {
+    "@graphql-codegen/typescript-mongodb": "^1.18.1",
     "apollo-server": "^2.21.2",
     "express": "4.17.1",
     "graphql": "^15.5.0",

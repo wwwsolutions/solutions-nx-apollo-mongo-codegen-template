@@ -2,26 +2,26 @@ scalar DateTime
 scalar EmailAddress
 scalar UnsignedInt
 
-type User {
+type User @entity {
   """
   User ID.
   """
-  id: ID!
+  id: ID! @id
 
   """
   User's first name.
   """
-  firstName: String!
+  firstName: String! @column
 
   """
   User's last name.
   """
-  lastName: String!
+  lastName: String! @column
 
   """
   User's e-mail address.
   """
-  email: EmailAddress
+  email: EmailAddress @column(overrideType: "string")
 
   """
   Posts published by user.
@@ -31,7 +31,7 @@ type User {
   """
   Users that this user is following.
   """
-  following: [User]
+  following: [User] @link
 
   """
   Users that this user is followed by.
@@ -39,36 +39,36 @@ type User {
   followers: [User]
 }
 
-type Post {
+type Post @entity {
   """
   Post ID.
   """
-  id: ID!
+  id: ID! @id
 
   """
   Post title.
   """
-  title: String!
+  title: String! @column
 
   """
   Post content.
   """
-  content: String!
+  content: String! @column
 
   """
   Post Author.
   """
-  author: User!
+  author: User! @link
 
   """
   Post published timestamp.
   """
-  publishedAt: DateTime
+  publishedAt: DateTime @column(overrideType: "Date")
 
   """
   Users who like this post.
   """
-  likedBy: [User]
+  likedBy: [User] @link
 }
 
 type Query {
