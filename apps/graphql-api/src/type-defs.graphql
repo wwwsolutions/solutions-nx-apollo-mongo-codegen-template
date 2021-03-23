@@ -1,3 +1,7 @@
+scalar DateTime
+scalar EmailAddress
+scalar UnsignedInt
+
 type User {
   """
   User ID.
@@ -14,8 +18,10 @@ type User {
   """
   lastName: String!
 
-  # User's e-mail address.
-  # email: TODO: Define type.
+  """
+  User's e-mail address.
+  """
+  email: EmailAddress
 
   """
   Posts published by user.
@@ -54,8 +60,10 @@ type Post {
   """
   author: User!
 
-  # Post published timestamp.
-  # publishedAt: TODO: Define type.
+  """
+  Post published timestamp.
+  """
+  publishedAt: DateTime
 
   """
   Users who like this post.
@@ -64,11 +72,6 @@ type Post {
 }
 
 type Query {
-  """
-  Test Message.
-  """
-  testMessage: String!
-
   """
   Get post by ID.
   """
@@ -105,7 +108,7 @@ type Mutation {
     User's ID to follow.
     """
     userId: ID!
-  ): Int!
+  ): UnsignedInt!
 
   """
   Unfollow user.
@@ -116,7 +119,7 @@ type Mutation {
     User's ID to unfollow.
     """
     userId: ID!
-  ): Int!
+  ): UnsignedInt!
 
   """
   Like post.
@@ -127,5 +130,5 @@ type Mutation {
     Post's ID to like.
     """
     postId: ID!
-  ): Int!
+  ): UnsignedInt!
 }

@@ -10,7 +10,7 @@
 
 ## Additional Guides
 
-### Configure loading `.graphql` files directly
+### Configure Loading `.graphql` Files Directly
 
 1. Add a `type-defs.graphql` file in `apps/graphql-api/src` folder.
 
@@ -47,7 +47,6 @@
          },
        };
      };
-
    ```
 
    This adds `webpack-graphql-loader` so files with `.graphql` extensions can be loaded.
@@ -84,6 +83,8 @@
 **Sources:**
 
 [Extend/Change the webpack configuration used to build apps](https://connect.nrwl.io/app/cookbook/4CjE7wgoOyYU3ri08GCAr7)
+
+---
 
 ## TODOS
 
