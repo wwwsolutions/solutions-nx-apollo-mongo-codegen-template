@@ -9,8 +9,6 @@ import {
 // ENVIRONMENTS
 import { environment } from '@server/environments';
 
-console.log('environment = ', environment);
-
 // PROVIDERS
 import { addMockUsersAsync, mongoDbProvider } from '@server/providers';
 

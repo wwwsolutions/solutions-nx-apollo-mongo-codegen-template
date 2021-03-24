@@ -26,7 +26,10 @@
     "workspace-generator": "nx workspace-generator",
     "graphql:codegen": "npx graphql-codegen --watch --config apps/server/codegen.yml",
     "prebuild": "npm run graphql:codegen",
-    "pretest": "npm run graphql:codegen"
+    "pretest": "npm run graphql:codegen",
+    "server:graphql-codegen": "npx graphql-codegen --watch --config apps/server/codegen.yml",
+    "server:start": "nx serve server",
+    "server": "concurrently npm:server:*"
   },
   "private": true,
   "devDependencies": {
