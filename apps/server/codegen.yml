@@ -1,22 +1,41 @@
-overwrite: true
-schema: 'http://localhost:4001'
-generates:
-  # GENERATES SERVER/API TYPES
-  libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
-    plugins:
-      - typescript
-      - typescript-mongodb
-    config:
-      enumsAsTypes: true
-    schema:
-      - apps/server/src/**/*.graphql
+# CODEGEN MONOREPO CONFIG
 
-  # GENERATES CLIENT TYPES
-  libs/client/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
+# schema: 'http://localhost:4001'
+overwrite: true
+hooks:
+  afterOneFileWrite:
+    - prettier --write
+generates:
+  # GENERATES SERVER TYPES
+  ## typescript plugin
+  libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
+    schema: libs/server/graphql-api/src/lib/**/*.graphql
+    config:
+      useIndexSignature: true
+      showUnusedMappers: true
+      defaultMapper: Partial<{T}>
+      immutableTypes: false
+      declarationKind:
+        type: 'interface'
+        input: 'interface'
+      enumsAsTypes: true
+      # maybeValue: T | null | undefined
+      maybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null'
     plugins:
       - typescript
+      - typescript-resolvers
       - typescript-mongodb
+
+  # GENERATES CLIENT/REACT TYPES
+  libs/client/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
+    schema: libs/server/graphql-api/src/lib/**/*.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
     config:
-      enumsAsTypes: true
-    schema:
-      - apps/server/src/**/*.graphql
+      reactApolloVersion: 3
+      # defaultMapper: any
+      # contextType: ../../customTypes#MyContext
+      withHooks: true
+      withHoc: false

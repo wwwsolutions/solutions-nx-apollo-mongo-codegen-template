@@ -1,1 +1,1 @@
-export * from './lib/client-data-access-models';
+export * from './lib/generated/graphql-codegen-typings';

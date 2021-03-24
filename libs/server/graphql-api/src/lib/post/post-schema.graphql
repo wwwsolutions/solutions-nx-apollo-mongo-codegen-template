@@ -1,0 +1,75 @@
+scalar DateTime
+scalar EmailAddress
+scalar UnsignedInt
+
+type Post @entity {
+  """
+  Post ID.
+  """
+  id: ID! @id
+
+  """
+  Post title.
+  """
+  title: String! @column
+
+  """
+  Post content.
+  """
+  content: String! @column
+
+  """
+  Post Author.
+  """
+  author: User! @link
+
+  """
+  Post published timestamp.
+  """
+  publishedAt: DateTime @column(overrideType: "Date")
+
+  """
+  Users who like this post.
+  """
+  likedBy: [User] @link
+}
+
+type Query {
+  """
+  Get post by ID.
+  """
+  post(id: ID!): Post
+}
+
+"""
+Publish post input.
+"""
+input PublishPostInput {
+  """
+  Post title.
+  """
+  title: String!
+
+  """
+  Post content.
+  """
+  content: String!
+}
+
+type Mutation {
+  """
+  Publish post.
+  """
+  publishPost(input: PublishPostInput!): Post!
+
+  """
+  Like post.
+  Returns the updated number of likes received.
+  """
+  likePost(
+    """
+    Post's ID to like.
+    """
+    postId: ID!
+  ): UnsignedInt!
+}
