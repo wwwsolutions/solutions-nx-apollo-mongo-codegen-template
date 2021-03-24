@@ -1,8 +1,12 @@
 overwrite: true
-schema: 'http://localhost:4001'
+# schema: 'http://localhost:4001'
+schema: libs/server/graphql-api/src/lib/type-defs.graphql
 generates:
   # GENERATES SERVER TYPES
   libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
     plugins:
       - typescript
       - typescript-resolvers
@@ -12,6 +16,9 @@ generates:
 
   # GENERATES CLIENT/REACT TYPES
   libs/client/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
     plugins:
       - typescript
       - typescript-operations
