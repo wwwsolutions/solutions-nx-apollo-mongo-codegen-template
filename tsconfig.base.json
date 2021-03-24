@@ -18,6 +18,9 @@
     "paths": {
       "@server/data-access-models": [
         "libs/server/data-access-models/src/index.ts"
+      ],
+      "@client/data-access-models": [
+        "libs/client/data-access-models/src/index.ts"
       ]
     }
   },

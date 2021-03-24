@@ -69,6 +69,19 @@
           }
         }
       }
+    },
+    "client-data-access-models": {
+      "root": "libs/client/data-access-models",
+      "sourceRoot": "libs/client/data-access-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/data-access-models/**/*.ts"]
+          }
+        }
+      }
     }
   }
 }
