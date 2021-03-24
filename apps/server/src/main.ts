@@ -7,10 +7,10 @@ import {
 } from 'graphql-scalars';
 
 // ENVIRONMENTS
-import { environment } from './environments/environment';
+import { environment } from '@server/environments';
 
 // MONGODB PROVIDER
-import { addMockUsersAsync, mongoDbProvider } from './mongodb.provider';
+import { addMockUsersAsync, mongoDbProvider } from '@server/providers';
 
 // GRAPHQL
 import { resolvers } from './resolvers';

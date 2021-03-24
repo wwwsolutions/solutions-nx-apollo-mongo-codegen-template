@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient, ObjectID } from 'mongodb';
 
-import { environment } from './environments/environment';
+import { environment } from '@server/environments';
 
 export class MongoDbProvider {
   private database?: Db;

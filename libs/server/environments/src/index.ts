@@ -1,1 +1,1 @@
-export * from './lib/server-environments';
+export * from './lib/environment';
