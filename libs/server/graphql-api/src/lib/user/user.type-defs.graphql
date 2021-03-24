@@ -39,71 +39,14 @@ type User @entity {
   followers: [User]
 }
 
-type Post @entity {
-  """
-  Post ID.
-  """
-  id: ID! @id
-
-  """
-  Post title.
-  """
-  title: String! @column
-
-  """
-  Post content.
-  """
-  content: String! @column
-
-  """
-  Post Author.
-  """
-  author: User! @link
-
-  """
-  Post published timestamp.
-  """
-  publishedAt: DateTime @column(overrideType: "Date")
-
-  """
-  Users who like this post.
-  """
-  likedBy: [User] @link
-}
-
 type Query {
-  """
-  Get post by ID.
-  """
-  post(id: ID!): Post
-
   """
   Get user by ID.
   """
   user(id: ID!): User
 }
 
-"""
-Publish post input.
-"""
-input PublishPostInput {
-  """
-  Post title.
-  """
-  title: String!
-
-  """
-  Post content.
-  """
-  content: String!
-}
-
 type Mutation {
-  """
-  Publish post.
-  """
-  publishPost(input: PublishPostInput!): Post!
-
   """
   Follow user.
   Returns the updated number of followers.
@@ -124,16 +67,5 @@ type Mutation {
     User's ID to unfollow.
     """
     userId: ID!
-  ): UnsignedInt!
-
-  """
-  Like post.
-  Returns the updated number of likes received.
-  """
-  likePost(
-    """
-    Post's ID to like.
-    """
-    postId: ID!
   ): UnsignedInt!
 }

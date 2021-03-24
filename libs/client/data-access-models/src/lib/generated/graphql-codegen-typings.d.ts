@@ -19,22 +19,41 @@ export type Scalars = {
   UnsignedInt: any;
 };
 
-export type User = {
-  __typename?: 'User';
-  /** User ID. */
-  id: Scalars['ID'];
-  /** User's first name. */
-  firstName: Scalars['String'];
-  /** User's last name. */
-  lastName: Scalars['String'];
-  /** User's e-mail address. */
-  email?: Maybe<Scalars['EmailAddress']>;
-  /** Posts published by user. */
-  posts?: Maybe<Array<Maybe<Post>>>;
-  /** Users that this user is following. */
-  following?: Maybe<Array<Maybe<User>>>;
-  /** Users that this user is followed by. */
-  followers?: Maybe<Array<Maybe<User>>>;
+export type Mutation = {
+  __typename?: 'Mutation';
+  /**
+   * Follow user.
+   * Returns the updated number of followers.
+   */
+  followUser: Scalars['UnsignedInt'];
+  /**
+   * Like post.
+   * Returns the updated number of likes received.
+   */
+  likePost: Scalars['UnsignedInt'];
+  /** Publish post. */
+  publishPost: Post;
+  /**
+   * Unfollow user.
+   * Returns the updated number of followers.
+   */
+  unfollowUser: Scalars['UnsignedInt'];
+};
+
+export type MutationFollowUserArgs = {
+  userId: Scalars['ID'];
+};
+
+export type MutationLikePostArgs = {
+  postId: Scalars['ID'];
+};
+
+export type MutationPublishPostArgs = {
+  input: PublishPostInput;
+};
+
+export type MutationUnfollowUserArgs = {
+  userId: Scalars['ID'];
 };
 
 export type Post = {
@@ -53,6 +72,14 @@ export type Post = {
   likedBy?: Maybe<Array<Maybe<User>>>;
 };
 
+/** Publish post input. */
+export type PublishPostInput = {
+  /** Post title. */
+  title: Scalars['String'];
+  /** Post content. */
+  content: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   /** Get post by ID. */
@@ -69,47 +96,20 @@ export type QueryUserArgs = {
   id: Scalars['ID'];
 };
 
-/** Publish post input. */
-export type PublishPostInput = {
-  /** Post title. */
-  title: Scalars['String'];
-  /** Post content. */
-  content: Scalars['String'];
-};
-
-export type Mutation = {
-  __typename?: 'Mutation';
-  /** Publish post. */
-  publishPost: Post;
-  /**
-   * Follow user.
-   * Returns the updated number of followers.
-   */
-  followUser: Scalars['UnsignedInt'];
-  /**
-   * Unfollow user.
-   * Returns the updated number of followers.
-   */
-  unfollowUser: Scalars['UnsignedInt'];
-  /**
-   * Like post.
-   * Returns the updated number of likes received.
-   */
-  likePost: Scalars['UnsignedInt'];
-};
-
-export type MutationPublishPostArgs = {
-  input: PublishPostInput;
-};
-
-export type MutationFollowUserArgs = {
-  userId: Scalars['ID'];
-};
-
-export type MutationUnfollowUserArgs = {
-  userId: Scalars['ID'];
-};
-
-export type MutationLikePostArgs = {
-  postId: Scalars['ID'];
+export type User = {
+  __typename?: 'User';
+  /** User ID. */
+  id: Scalars['ID'];
+  /** User's first name. */
+  firstName: Scalars['String'];
+  /** User's last name. */
+  lastName: Scalars['String'];
+  /** User's e-mail address. */
+  email?: Maybe<Scalars['EmailAddress']>;
+  /** Posts published by user. */
+  posts?: Maybe<Array<Maybe<Post>>>;
+  /** Users that this user is following. */
+  following?: Maybe<Array<Maybe<User>>>;
+  /** Users that this user is followed by. */
+  followers?: Maybe<Array<Maybe<User>>>;
 };
