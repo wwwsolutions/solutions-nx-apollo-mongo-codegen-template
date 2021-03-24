@@ -88,4 +88,10 @@
 
 ## TODOS
 
-TODO: configure to load different environments based on `NODE_ENV`
+TODO: update README instructions
+
+TODO: configure to load different environments based on environments variables
+
+TODO: configure merge schemas
+
+TODO: configure merge resolvers

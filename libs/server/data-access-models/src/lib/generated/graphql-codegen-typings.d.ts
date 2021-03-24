@@ -3,7 +3,9 @@ import {
   GraphQLScalarType,
   GraphQLScalarTypeConfig,
 } from 'graphql';
-export type Maybe<T> = T | null;
+export type Maybe<T> = T extends PromiseLike<infer U>
+  ? Promise<U | null>
+  : T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
@@ -27,7 +29,7 @@ export type Scalars = {
   UnsignedInt: any;
 };
 
-export type User = {
+export interface User {
   __typename?: 'User';
   /** User ID. */
   id: Scalars['ID'];
@@ -43,9 +45,9 @@ export type User = {
   following?: Maybe<Array<Maybe<User>>>;
   /** Users that this user is followed by. */
   followers?: Maybe<Array<Maybe<User>>>;
-};
+}
 
-export type Post = {
+export interface Post {
   __typename?: 'Post';
   /** Post ID. */
   id: Scalars['ID'];
@@ -59,15 +61,15 @@ export type Post = {
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** Users who like this post. */
   likedBy?: Maybe<Array<Maybe<User>>>;
-};
+}
 
-export type Query = {
+export interface Query {
   __typename?: 'Query';
   /** Get post by ID. */
   post?: Maybe<Post>;
   /** Get user by ID. */
   user?: Maybe<User>;
-};
+}
 
 export type QueryPostArgs = {
   id: Scalars['ID'];
@@ -78,14 +80,14 @@ export type QueryUserArgs = {
 };
 
 /** Publish post input. */
-export type PublishPostInput = {
+export interface PublishPostInput {
   /** Post title. */
   title: Scalars['String'];
   /** Post content. */
   content: Scalars['String'];
-};
+}
 
-export type Mutation = {
+export interface Mutation {
   __typename?: 'Mutation';
   /** Publish post. */
   publishPost: Post;
@@ -104,7 +106,7 @@ export type Mutation = {
    * Returns the updated number of likes received.
    */
   likePost: Scalars['UnsignedInt'];
-};
+}
 
 export type MutationPublishPostArgs = {
   input: PublishPostInput;
@@ -122,10 +124,13 @@ export type MutationLikePostArgs = {
   postId: Scalars['ID'];
 };
 
-export type AdditionalEntityFields = {
+export interface AdditionalEntityFields {
   path?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
-};
+}
+
+export type WithIndex<TObject> = TObject & Record<string, any>;
+export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -242,36 +247,36 @@ export type DirectiveResolverFn<
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
-  DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
-  EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>;
-  UnsignedInt: ResolverTypeWrapper<Scalars['UnsignedInt']>;
-  User: ResolverTypeWrapper<User>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Post: ResolverTypeWrapper<Post>;
+export type ResolversTypes = ResolversObject<{
+  DateTime: ResolverTypeWrapper<Partial<Scalars['DateTime']>>;
+  EmailAddress: ResolverTypeWrapper<Partial<Scalars['EmailAddress']>>;
+  UnsignedInt: ResolverTypeWrapper<Partial<Scalars['UnsignedInt']>>;
+  User: ResolverTypeWrapper<Partial<User>>;
+  ID: ResolverTypeWrapper<Partial<Scalars['ID']>>;
+  String: ResolverTypeWrapper<Partial<Scalars['String']>>;
+  Post: ResolverTypeWrapper<Partial<Post>>;
   Query: ResolverTypeWrapper<{}>;
-  PublishPostInput: PublishPostInput;
+  PublishPostInput: ResolverTypeWrapper<Partial<PublishPostInput>>;
   Mutation: ResolverTypeWrapper<{}>;
-  AdditionalEntityFields: AdditionalEntityFields;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-};
+  AdditionalEntityFields: ResolverTypeWrapper<Partial<AdditionalEntityFields>>;
+  Boolean: ResolverTypeWrapper<Partial<Scalars['Boolean']>>;
+}>;
 
 /** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
-  DateTime: Scalars['DateTime'];
-  EmailAddress: Scalars['EmailAddress'];
-  UnsignedInt: Scalars['UnsignedInt'];
-  User: User;
-  ID: Scalars['ID'];
-  String: Scalars['String'];
-  Post: Post;
+export type ResolversParentTypes = ResolversObject<{
+  DateTime: Partial<Scalars['DateTime']>;
+  EmailAddress: Partial<Scalars['EmailAddress']>;
+  UnsignedInt: Partial<Scalars['UnsignedInt']>;
+  User: Partial<User>;
+  ID: Partial<Scalars['ID']>;
+  String: Partial<Scalars['String']>;
+  Post: Partial<Post>;
   Query: {};
-  PublishPostInput: PublishPostInput;
+  PublishPostInput: Partial<PublishPostInput>;
   Mutation: {};
-  AdditionalEntityFields: AdditionalEntityFields;
-  Boolean: Scalars['Boolean'];
-};
+  AdditionalEntityFields: Partial<AdditionalEntityFields>;
+  Boolean: Partial<Scalars['Boolean']>;
+}>;
 
 export type UnionDirectiveArgs = {
   discriminatorField?: Maybe<Scalars['String']>;
@@ -372,7 +377,7 @@ export interface UnsignedIntScalarConfig
 export type UserResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
-> = {
+> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -397,12 +402,12 @@ export type UserResolvers<
     ContextType
   >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
+}>;
 
 export type PostResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']
-> = {
+> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -418,12 +423,12 @@ export type PostResolvers<
     ContextType
   >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
+}>;
 
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
-> = {
+> = ResolversObject<{
   post?: Resolver<
     Maybe<ResolversTypes['Post']>,
     ParentType,
@@ -436,12 +441,12 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryUserArgs, 'id'>
   >;
-};
+}>;
 
 export type MutationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']
-> = {
+> = ResolversObject<{
   publishPost?: Resolver<
     ResolversTypes['Post'],
     ParentType,
@@ -466,9 +471,9 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationLikePostArgs, 'postId'>
   >;
-};
+}>;
 
-export type Resolvers<ContextType = any> = {
+export type Resolvers<ContextType = any> = ResolversObject<{
   DateTime?: GraphQLScalarType;
   EmailAddress?: GraphQLScalarType;
   UnsignedInt?: GraphQLScalarType;
@@ -476,14 +481,14 @@ export type Resolvers<ContextType = any> = {
   Post?: PostResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
-};
+}>;
 
 /**
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
-export type DirectiveResolvers<ContextType = any> = {
+export type DirectiveResolvers<ContextType = any> = ResolversObject<{
   union?: UnionDirectiveResolver<any, any, ContextType>;
   abstractEntity?: AbstractEntityDirectiveResolver<any, any, ContextType>;
   entity?: EntityDirectiveResolver<any, any, ContextType>;
@@ -492,7 +497,7 @@ export type DirectiveResolvers<ContextType = any> = {
   link?: LinkDirectiveResolver<any, any, ContextType>;
   embedded?: EmbeddedDirectiveResolver<any, any, ContextType>;
   map?: MapDirectiveResolver<any, any, ContextType>;
-};
+}>;
 
 /**
  * @deprecated

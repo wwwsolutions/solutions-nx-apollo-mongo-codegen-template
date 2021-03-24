@@ -1,20 +1,30 @@
 # CODEGEN MONOREPO CONFIG
 
+# schema: 'http://localhost:4001'
 overwrite: true
 hooks:
   afterOneFileWrite:
     - prettier --write
-# schema: 'http://localhost:4001'
 generates:
   # GENERATES SERVER TYPES
+  ## typescript plugin
   libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
     schema: libs/server/graphql-api/src/lib/**/*.graphql
+    config:
+      useIndexSignature: true
+      showUnusedMappers: true
+      defaultMapper: Partial<{T}>
+      immutableTypes: false
+      declarationKind:
+        type: 'interface'
+        input: 'interface'
+      enumsAsTypes: true
+      # maybeValue: T | null | undefined
+      maybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null'
     plugins:
       - typescript
       - typescript-resolvers
       - typescript-mongodb
-    config:
-      enumsAsTypes: true
 
   # GENERATES CLIENT/REACT TYPES
   libs/client/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
@@ -25,7 +35,7 @@ generates:
       - typescript-react-apollo
     config:
       reactApolloVersion: 3
-      defaultMapper: any
+      # defaultMapper: any
       # contextType: ../../customTypes#MyContext
       withHooks: true
       withHoc: false

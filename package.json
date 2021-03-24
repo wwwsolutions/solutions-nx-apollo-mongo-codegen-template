@@ -27,6 +27,7 @@
     "graphql:codegen": "npx graphql-codegen --watch --config apps/server/codegen.yml",
     "prebuild": "npm run graphql:codegen",
     "pretest": "npm run graphql:codegen",
+    "generate-types": "npx graphql-codegen --config apps/server/codegen.yml",
     "server:graphql-codegen": "npx graphql-codegen --watch --config apps/server/codegen.yml",
     "server:start": "nx serve server",
     "server": "concurrently npm:server:*"
