@@ -1,6 +1,4 @@
 {
-  "npmScope": "edu",
-  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "workspace.json": "*",
     "package.json": { "dependencies": "*", "devDependencies": "*" },
@@ -9,11 +7,20 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "edu",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
-  "projects": { "graphql-api": { "tags": [] } }
+  "projects": {
+    "server": { "tags": [] },
+    "server-data-access-models": { "tags": [] },
+    "client-data-access-models": { "tags": [] },
+    "server-graphql-api": { "tags": [] },
+    "server-environments": { "tags": [] },
+    "server-providers": { "tags": [] }
+  }
 }

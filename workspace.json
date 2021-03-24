@@ -1,9 +1,13 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "server",
   "projects": {
-    "graphql-api": {
-      "root": "apps/graphql-api",
-      "sourceRoot": "apps/graphql-api/src",
+    "server": {
+      "root": "apps/server",
+      "sourceRoot": "apps/server/src",
       "projectType": "application",
       "prefix": "graphql-api",
       "architect": {
@@ -11,11 +15,11 @@
           "builder": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/graphql-api",
-            "main": "apps/graphql-api/src/main.ts",
-            "tsConfig": "apps/graphql-api/tsconfig.app.json",
-            "assets": ["apps/graphql-api/src/assets"],
-            "webpackConfig": "apps/graphql-api/webpack.config.ts"
+            "outputPath": "dist/apps/server",
+            "main": "apps/server/src/main.ts",
+            "tsConfig": "apps/server/tsconfig.app.json",
+            "assets": ["apps/server/src/assets"],
+            "webpackConfig": "apps/server/webpack.config.ts"
           },
           "configurations": {
             "production": {
@@ -24,8 +28,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/graphql-api/src/environments/environment.ts",
-                  "with": "apps/graphql-api/src/environments/environment.prod.ts"
+                  "replace": "libs/server/environments/src/lib/environment.ts",
+                  "with": "libs/server/environments/src/lib/environment.prod.ts"
                 }
               ]
             }
@@ -34,28 +38,113 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "graphql-api:build"
+            "buildTarget": "server:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/graphql-api/**/*.ts"]
+            "lintFilePatterns": ["apps/server/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/graphql-api"],
+          "outputs": ["coverage/apps/server"],
           "options": {
-            "jestConfig": "apps/graphql-api/jest.config.js",
+            "jestConfig": "apps/server/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "server-data-access-models": {
+      "root": "libs/server/data-access-models",
+      "sourceRoot": "libs/server/data-access-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/data-access-models/**/*.ts"]
+          }
+        }
+      }
+    },
+    "client-data-access-models": {
+      "root": "libs/client/data-access-models",
+      "sourceRoot": "libs/client/data-access-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/data-access-models/**/*.ts"]
+          }
+        }
+      }
+    },
+    "server-graphql-api": {
+      "root": "libs/server/graphql-api",
+      "sourceRoot": "libs/server/graphql-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/graphql-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/graphql-api"],
+          "options": {
+            "jestConfig": "libs/server/graphql-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "server-environments": {
+      "root": "libs/server/environments",
+      "sourceRoot": "libs/server/environments/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/environments/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/environments"],
+          "options": {
+            "jestConfig": "libs/server/environments/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "server-providers": {
+      "root": "libs/server/providers",
+      "sourceRoot": "libs/server/providers/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/providers/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/providers"],
+          "options": {
+            "jestConfig": "libs/server/providers/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
-  "defaultProject": "graphql-api"
+  }
 }

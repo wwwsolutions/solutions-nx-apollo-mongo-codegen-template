@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -10,12 +11,22 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types", "./typings"],
+    "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@server/data-access-models": [
+        "libs/server/data-access-models/src/index.ts"
+      ],
+      "@client/data-access-models": [
+        "libs/client/data-access-models/src/index.ts"
+      ],
+      "@server/graphql-api": ["libs/server/graphql-api/src/index.ts"],
+      "@server/environments": ["libs/server/environments/src/index.ts"],
+      "@server/providers": ["libs/server/providers/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

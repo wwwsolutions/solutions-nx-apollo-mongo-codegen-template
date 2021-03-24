@@ -7,37 +7,17 @@ import {
 } from 'graphql-scalars';
 
 // ENVIRONMENTS
-import { environment } from './environments/environment';
-
-// MONGODB PROVIDER
-import { addMockUsersAsync, mongoDbProvider } from './mongodb.provider';
-
-// GRAPHQL
-import { resolvers } from './resolvers';
-import * as typeDefs from './type-defs.graphql';
+import { environment } from '@server/environments';
 
 console.log('environment = ', environment);
 
-// // APOLLO SERVER
-// const serverConfig = {
-//   resolvers,
-//   typeDefs,
-//   introspection: environment.apollo.introspection,
-//   mocks: {
-//     DateTime: DateTimeMock,
-//     EmailAddress: EmailAddressMock,
-//     UnsignedInt: UnsignedIntMock,
-//   }, // TODO: Remove in PROD.
-//   mockEntireSchema: false, // TODO: Remove in PROD.
-//   playground: environment.apollo.playground,
-// };
+// PROVIDERS
+import { addMockUsersAsync, mongoDbProvider } from '@server/providers';
 
-// const server = new ApolloServer(serverConfig);
+// GRAPHQL
+import { resolvers, typeDefs } from '@server/graphql-api';
 
-// server
-//   .listen(environment.port)
-//   .then(({ url }) => console.log(`Server ready at ${url}. `));
-
+// BOOTSTRAP
 (async function bootstrapAsync(): Promise<void> {
   // CONNECT TO DB
   await mongoDbProvider.connectAsync(environment.mongoDb.databaseName);
@@ -63,12 +43,4 @@ console.log('environment = ', environment);
   server
     .listen(environment.port)
     .then(({ url }) => console.log(`Server ready at ${url}. `));
-
-  // if (module.hot) {
-  //   module.hot.accept();
-  //   module.hot.dispose(async () => {
-  //     server.stop();
-  //     await mongoDbProvider.closeAsync();
-  //   });
-  // }
 })();
