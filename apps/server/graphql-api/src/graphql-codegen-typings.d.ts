@@ -1,7 +1,11 @@
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -19,22 +23,10 @@ export type Scalars = {
   Upload: any;
 };
 
-
-
-
-
-
-
-
-
-
 export type AdditionalEntityFields = {
   path?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
 };
-
-
-
 
 export type User = {
   __typename?: 'User';
@@ -78,11 +70,9 @@ export type Query = {
   user?: Maybe<User>;
 };
 
-
 export type QueryPostArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryUserArgs = {
   id: Scalars['ID'];
@@ -117,45 +107,38 @@ export type Mutation = {
   unfollowUser: Scalars['UnsignedInt'];
 };
 
-
 export type MutationFollowUserArgs = {
   userId: Scalars['ID'];
 };
-
 
 export type MutationLikePostArgs = {
   postId: Scalars['ID'];
 };
 
-
 export type MutationPublishPostArgs = {
   input: PublishPostInput;
 };
-
 
 export type MutationUnfollowUserArgs = {
   userId: Scalars['ID'];
 };
 
-export type CacheControlScope =
-  | 'PUBLIC'
-  | 'PRIVATE';
-
+export type CacheControlScope = 'PUBLIC' | 'PRIVATE';
 
 import { ObjectID } from 'mongodb';
 export type UserDbObject = {
-  email?: string,
-  firstName: string,
-  following?: Maybe<Array<Maybe<UserDbObject['_id']>>>,
-  _id: ObjectID,
-  lastName: string,
+  email?: string;
+  firstName: string;
+  following?: Maybe<Array<Maybe<UserDbObject['_id']>>>;
+  _id: ObjectID;
+  lastName: string;
 };
 
 export type PostDbObject = {
-  author: UserDbObject['_id'],
-  content: string,
-  _id: ObjectID,
-  likedBy?: Maybe<Array<Maybe<UserDbObject['_id']>>>,
-  publishedAt?: Date,
-  title: string,
+  author: UserDbObject['_id'];
+  content: string;
+  _id: ObjectID;
+  likedBy?: Maybe<Array<Maybe<UserDbObject['_id']>>>;
+  publishedAt?: Date;
+  title: string;
 };
