@@ -19,6 +19,7 @@
     "server": { "tags": [] },
     "server-data-access-models": { "tags": [] },
     "client-data-access-models": { "tags": [] },
-    "server-graphql-api": { "tags": [] }
+    "server-graphql-api": { "tags": [] },
+    "server-environments": { "tags": [] }
   }
 }

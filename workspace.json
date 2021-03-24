@@ -103,6 +103,27 @@
           }
         }
       }
+    },
+    "server-environments": {
+      "root": "libs/server/environments",
+      "sourceRoot": "libs/server/environments/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/environments/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/environments"],
+          "options": {
+            "jestConfig": "libs/server/environments/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
