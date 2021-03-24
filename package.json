@@ -24,7 +24,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "workspace-generator": "nx workspace-generator",
-    "graphql:codegen": "npx graphql-codegen --config apps/server/graphql-api/codegen.yml",
+    "graphql:codegen": "npx graphql-codegen --config apps/server/codegen.yml",
     "prebuild": "npm run graphql:codegen",
     "pretest": "npm run graphql:codegen"
   },

@@ -9,7 +9,7 @@ generates:
     config:
       enumsAsTypes: true
     schema:
-      - apps/server/graphql-api/src/**/*.graphql
+      - apps/server/src/**/*.graphql
 
   # GENERATES CLIENT TYPES
   libs/client/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
@@ -19,4 +19,4 @@ generates:
     config:
       enumsAsTypes: true
     schema:
-      - apps/server/graphql-api/src/**/*.graphql
+      - apps/server/src/**/*.graphql

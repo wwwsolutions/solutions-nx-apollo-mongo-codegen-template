@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/server/graphql-api'],
+  projects: ['<rootDir>/apps/server', '<rootDir>/apps/server'],
 };

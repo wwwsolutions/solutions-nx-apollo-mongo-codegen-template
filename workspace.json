@@ -3,11 +3,11 @@
   "cli": {
     "defaultCollection": "@nrwl/express"
   },
-  "defaultProject": "server-graphql-api",
+  "defaultProject": "server",
   "projects": {
-    "server-graphql-api": {
-      "root": "apps/server/graphql-api",
-      "sourceRoot": "apps/server/graphql-api/src",
+    "server": {
+      "root": "apps/server",
+      "sourceRoot": "apps/server/src",
       "projectType": "application",
       "prefix": "graphql-api",
       "architect": {
@@ -15,11 +15,11 @@
           "builder": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/server/graphql-api",
-            "main": "apps/server/graphql-api/src/main.ts",
-            "tsConfig": "apps/server/graphql-api/tsconfig.app.json",
-            "assets": ["apps/server/graphql-api/src/assets"],
-            "webpackConfig": "apps/server/graphql-api/webpack.config.ts"
+            "outputPath": "dist/apps/server",
+            "main": "apps/server/src/main.ts",
+            "tsConfig": "apps/server/tsconfig.app.json",
+            "assets": ["apps/server/src/assets"],
+            "webpackConfig": "apps/server/webpack.config.ts"
           },
           "configurations": {
             "production": {
@@ -28,8 +28,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/server/graphql-api/src/environments/environment.ts",
-                  "with": "apps/server/graphql-api/src/environments/environment.prod.ts"
+                  "replace": "apps/server/src/environments/environment.ts",
+                  "with": "apps/server/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -38,20 +38,20 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "server-graphql-api:build"
+            "buildTarget": "server:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/server/graphql-api/**/*.ts"]
+            "lintFilePatterns": ["apps/server/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/server/graphql-api"],
+          "outputs": ["coverage/apps/server"],
           "options": {
-            "jestConfig": "apps/server/graphql-api/jest.config.js",
+            "jestConfig": "apps/server/jest.config.js",
             "passWithNoTests": true
           }
         }

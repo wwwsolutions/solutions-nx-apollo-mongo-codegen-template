@@ -16,7 +16,7 @@
     }
   },
   "projects": {
-    "server-graphql-api": { "tags": [] },
+    "server": { "tags": [] },
     "server-data-access-models": { "tags": [] },
     "client-data-access-models": { "tags": [] }
   }
