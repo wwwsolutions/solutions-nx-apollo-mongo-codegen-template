@@ -82,6 +82,27 @@
           }
         }
       }
+    },
+    "server-graphql-api": {
+      "root": "libs/server/graphql-api",
+      "sourceRoot": "libs/server/graphql-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/graphql-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/graphql-api"],
+          "options": {
+            "jestConfig": "libs/server/graphql-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
