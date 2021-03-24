@@ -68,6 +68,8 @@ export type MutationUnfollowUserArgs = {
 
 export interface Post {
   __typename?: 'Post';
+  /** TESTING. */
+  domagoj?: Maybe<Scalars['String']>;
   /** Post ID. */
   id: Scalars['ID'];
   /** Post title. */
@@ -403,6 +405,7 @@ export type PostResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']
 > = ResolversObject<{
+  domagoj?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

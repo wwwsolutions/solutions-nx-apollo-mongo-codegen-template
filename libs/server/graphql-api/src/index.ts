@@ -1,13 +1,13 @@
-// MERGED TYPE DEFINITIONS
+// MERGED SCHEMAS
 import { mergeTypeDefs } from '@graphql-tools/merge';
-import * as userTypeDefs from './lib/user/user.type-defs.graphql';
-import * as postTypeDefs from './lib/post/post.type-defs.graphql';
+import * as userSchema from './lib/user/user-schema.graphql';
+import * as postSchema from './lib/post/post-schema.graphql';
 
-export const typeDefs = mergeTypeDefs([userTypeDefs, postTypeDefs]);
+export const typeDefs = mergeTypeDefs([userSchema, postSchema]);
 
 // MERGED RESOLVERS
 import merge from 'lodash/merge';
-import { graphqlScalarsResolver } from './lib/custom-resolver';
+import { graphqlScalarsResolver } from './lib/graphql-scalars/graphql-scalars-resolver';
 import { postResolver } from './lib/post/post-resolver';
 import { userResolver } from './lib/user/user-resolver';
 

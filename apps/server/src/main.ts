@@ -17,7 +17,7 @@ import { resolvers, typeDefs } from '@server/graphql-api';
 
 // BOOTSTRAP
 (async function bootstrapAsync(): Promise<void> {
-  console.log('typeDefs = ', typeDefs);
+  console.log('resolvers = ', JSON.stringify(resolvers));
 
   // CONNECT TO DB
   await mongoDbProvider.connectAsync(environment.mongoDb.databaseName);

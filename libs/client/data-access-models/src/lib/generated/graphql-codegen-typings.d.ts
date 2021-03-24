@@ -58,6 +58,8 @@ export type MutationUnfollowUserArgs = {
 
 export type Post = {
   __typename?: 'Post';
+  /** TESTING. */
+  domagoj?: Maybe<Scalars['String']>;
   /** Post ID. */
   id: Scalars['ID'];
   /** Post title. */
