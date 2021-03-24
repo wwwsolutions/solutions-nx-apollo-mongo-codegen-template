@@ -1,6 +1,6 @@
 import { Environment } from './environment.interface';
 
-const defaultPort = 4000;
+const defaultPort = 9000;
 
 export const environment: Environment = {
   production: process.env.NODE_ENV === 'false',
