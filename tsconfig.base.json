@@ -23,7 +23,8 @@
         "libs/client/data-access-models/src/index.ts"
       ],
       "@server/graphql-api": ["libs/server/graphql-api/src/index.ts"],
-      "@server/environments": ["libs/server/environments/src/index.ts"]
+      "@server/environments": ["libs/server/environments/src/index.ts"],
+      "@server/providers": ["libs/server/providers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

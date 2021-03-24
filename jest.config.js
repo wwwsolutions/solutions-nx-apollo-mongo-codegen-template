@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/server',
     '<rootDir>/libs/server/graphql-api',
     '<rootDir>/libs/server/environments',
+    '<rootDir>/libs/server/providers',
   ],
 };

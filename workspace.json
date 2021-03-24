@@ -124,6 +124,27 @@
           }
         }
       }
+    },
+    "server-providers": {
+      "root": "libs/server/providers",
+      "sourceRoot": "libs/server/providers/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/providers/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/providers"],
+          "options": {
+            "jestConfig": "libs/server/providers/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

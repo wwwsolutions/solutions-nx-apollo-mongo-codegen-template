@@ -20,6 +20,7 @@
     "server-data-access-models": { "tags": [] },
     "client-data-access-models": { "tags": [] },
     "server-graphql-api": { "tags": [] },
-    "server-environments": { "tags": [] }
+    "server-environments": { "tags": [] },
+    "server-providers": { "tags": [] }
   }
 }
