@@ -1,7 +1,8 @@
 overwrite: true
 schema: 'http://localhost:4001'
 generates:
-  apps/server/graphql-api/src/graphql-codegen-typings.d.ts:
+  # GENERATES SERVER TYPES
+  libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts:
     plugins:
       - typescript
       - typescript-mongodb

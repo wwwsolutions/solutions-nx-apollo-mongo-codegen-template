@@ -1,1 +1,1 @@
-apps/server/graphql-api/src/graphql-codegen-typings.d.ts
+libs/server/data-access-models/src/lib/generated/graphql-codegen-typings.d.ts

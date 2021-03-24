@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@server/data-access-models": [
+        "libs/server/data-access-models/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

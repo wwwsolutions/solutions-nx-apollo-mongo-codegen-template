@@ -13,7 +13,7 @@ import {
   Post,
   PostDbObject,
   PublishPostInput,
-} from './graphql-codegen-typings';
+} from '@server/data-access-models';
 
 // DB PROVIDER
 import { mongoDbProvider } from './mongodb.provider';
