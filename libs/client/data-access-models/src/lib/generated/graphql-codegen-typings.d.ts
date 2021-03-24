@@ -19,6 +19,11 @@ export type Scalars = {
   UnsignedInt: any;
 };
 
+export type Test = {
+  __typename?: 'Test';
+  id: Scalars['ID'];
+};
+
 export type User = {
   __typename?: 'User';
   /** User ID. */

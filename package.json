@@ -24,7 +24,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "workspace-generator": "nx workspace-generator",
-    "graphql:codegen": "npx graphql-codegen --config apps/server/codegen.yml",
+    "graphql:codegen": "npx graphql-codegen --watch --config apps/server/codegen.yml",
     "prebuild": "npm run graphql:codegen",
     "pretest": "npm run graphql:codegen"
   },
@@ -49,6 +49,7 @@
     "@types/node": "12.12.38",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
+    "concurrently": "^6.0.0",
     "dotenv": "6.2.0",
     "eslint": "7.10.0",
     "eslint-config-prettier": "8.1.0",

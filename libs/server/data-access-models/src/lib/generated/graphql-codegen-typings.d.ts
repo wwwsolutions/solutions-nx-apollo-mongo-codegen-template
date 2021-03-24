@@ -27,6 +27,11 @@ export type Scalars = {
   UnsignedInt: any;
 };
 
+export type Test = {
+  __typename?: 'Test';
+  id: Scalars['ID'];
+};
+
 export type User = {
   __typename?: 'User';
   /** User ID. */
@@ -246,8 +251,9 @@ export type ResolversTypes = {
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>;
   UnsignedInt: ResolverTypeWrapper<Scalars['UnsignedInt']>;
-  User: ResolverTypeWrapper<User>;
+  Test: ResolverTypeWrapper<Test>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  User: ResolverTypeWrapper<User>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Post: ResolverTypeWrapper<Post>;
   Query: ResolverTypeWrapper<{}>;
@@ -262,8 +268,9 @@ export type ResolversParentTypes = {
   DateTime: Scalars['DateTime'];
   EmailAddress: Scalars['EmailAddress'];
   UnsignedInt: Scalars['UnsignedInt'];
-  User: User;
+  Test: Test;
   ID: Scalars['ID'];
+  User: User;
   String: Scalars['String'];
   Post: Post;
   Query: {};
@@ -369,6 +376,14 @@ export interface UnsignedIntScalarConfig
   name: 'UnsignedInt';
 }
 
+export type TestResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Test'] = ResolversParentTypes['Test']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type UserResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
@@ -472,6 +487,7 @@ export type Resolvers<ContextType = any> = {
   DateTime?: GraphQLScalarType;
   EmailAddress?: GraphQLScalarType;
   UnsignedInt?: GraphQLScalarType;
+  Test?: TestResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

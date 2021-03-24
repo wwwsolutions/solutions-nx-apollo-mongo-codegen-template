@@ -2,6 +2,10 @@ scalar DateTime
 scalar EmailAddress
 scalar UnsignedInt
 
+type Test {
+  id: ID!
+}
+
 type User @entity {
   """
   User ID.
