@@ -1,9 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
-  "defaultProject": "server",
   "projects": {
     "client-data-access-models": {
       "root": "libs/client/data-access-models",
@@ -17,7 +13,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "server": {
       "root": "apps/server",
@@ -26,7 +23,7 @@
       "prefix": "graphql-api",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "@nrwl/node:webpack",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/server",
@@ -50,7 +47,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "server:build"
           }
@@ -70,7 +67,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "server-data-access-models": {
       "root": "libs/server/data-access-models",
@@ -84,7 +82,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "server-environments": {
       "root": "libs/server/environments",
@@ -106,7 +105,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "server-graphql-api": {
       "root": "libs/server/graphql-api",
@@ -128,7 +128,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "server-providers": {
       "root": "libs/server/providers",
@@ -150,7 +151,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }
