@@ -6,8 +6,11 @@ export class MongoDbProvider {
   private database?: Db;
   private mongoClient: MongoClient;
 
-  constructor(url: string) {
-    this.mongoClient = new MongoClient(url, { useUnifiedTopology: true });
+  constructor(uri: string) {
+    this.mongoClient = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   }
 
   get postsCollection(): Collection {
@@ -37,6 +40,7 @@ export class MongoDbProvider {
    */
   async connectAsync(databaseName: string): Promise<void> {
     await this.mongoClient.connect();
+    console.log('connectDatabase --> connected');
     this.database = this.mongoClient.db(databaseName);
   }
 
