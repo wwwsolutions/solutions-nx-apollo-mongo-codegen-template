@@ -1,10 +1,21 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
-  "defaultProject": "server",
   "projects": {
+    "client-data-access-models": {
+      "root": "libs/client/data-access-models",
+      "sourceRoot": "libs/client/data-access-models/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/data-access-models/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
     "server": {
       "root": "apps/server",
       "sourceRoot": "apps/server/src",
@@ -12,7 +23,7 @@
       "prefix": "graphql-api",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "@nrwl/node:webpack",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/server",
@@ -36,7 +47,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "server:build"
           }
@@ -45,17 +56,19 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/server/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/server"],
           "options": {
-            "jestConfig": "apps/server/jest.config.js",
+            "jestConfig": "apps/server/jest.config.ts",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "server-data-access-models": {
       "root": "libs/server/data-access-models",
@@ -66,43 +79,11 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/server/data-access-models/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
-    },
-    "client-data-access-models": {
-      "root": "libs/client/data-access-models",
-      "sourceRoot": "libs/client/data-access-models/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/data-access-models/**/*.ts"]
-          }
-        }
-      }
-    },
-    "server-graphql-api": {
-      "root": "libs/server/graphql-api",
-      "sourceRoot": "libs/server/graphql-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/server/graphql-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/server/graphql-api"],
-          "options": {
-            "jestConfig": "libs/server/graphql-api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
+      },
+      "tags": []
     },
     "server-environments": {
       "root": "libs/server/environments",
@@ -113,17 +94,42 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/server/environments/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/server/environments"],
           "options": {
-            "jestConfig": "libs/server/environments/jest.config.js",
+            "jestConfig": "libs/server/environments/jest.config.ts",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
+    },
+    "server-graphql-api": {
+      "root": "libs/server/graphql-api",
+      "sourceRoot": "libs/server/graphql-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/server/graphql-api/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server/graphql-api"],
+          "options": {
+            "jestConfig": "libs/server/graphql-api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     },
     "server-providers": {
       "root": "libs/server/providers",
@@ -134,17 +140,19 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/server/providers/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/server/providers"],
           "options": {
-            "jestConfig": "libs/server/providers/jest.config.js",
+            "jestConfig": "libs/server/providers/jest.config.ts",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }
