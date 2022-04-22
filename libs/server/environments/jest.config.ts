@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'server-providers',
-  preset: '../../../jest.preset.js',
+  displayName: 'server-environments',
+
   globals: {
     'ts-jest': { tsconfig: '<rootDir>/tsconfig.spec.json' },
   },
@@ -8,5 +8,6 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/server/providers',
+  coverageDirectory: '../../../coverage/libs/server/environments',
+  preset: '..\\..\\..\\jest.preset.ts',
 };

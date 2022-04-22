@@ -63,7 +63,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/server"],
           "options": {
-            "jestConfig": "apps/server/jest.config.js",
+            "jestConfig": "apps/server/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -101,7 +101,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/server/environments"],
           "options": {
-            "jestConfig": "libs/server/environments/jest.config.js",
+            "jestConfig": "libs/server/environments/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -124,7 +124,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/server/graphql-api"],
           "options": {
-            "jestConfig": "libs/server/graphql-api/jest.config.js",
+            "jestConfig": "libs/server/graphql-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -147,7 +147,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/server/providers"],
           "options": {
-            "jestConfig": "libs/server/providers/jest.config.js",
+            "jestConfig": "libs/server/providers/jest.config.ts",
             "passWithNoTests": true
           }
         }
